@@ -11,21 +11,18 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4.2.2
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4.2.0
       with:
-        node-version: '16'  # Adjust the node version if needed
+        node-version: '20'  # Adjust the node version if needed
 
     - name: Install Dependencies
       run: npm install
 
-    - name: Install vsce (Visual Studio Code Extension CLI)
-      run: npm install -g vsce
-
     - name: Package Extension
-      run: vsce package
+      run: npx --package @vscode/vsce -- vsce package
 
     - name: Upload .vsix File as Artifact
       uses: actions/upload-artifact@v4.6.0
