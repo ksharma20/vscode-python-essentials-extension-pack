@@ -24,8 +24,23 @@ jobs:
     - name: Package Extension
       run: npx --package @vscode/vsce -- vsce package
 
-    - name: Upload .vsix File as Artifact
-      uses: actions/upload-artifact@v4.6.0
-      with:
-        name: python-official-extensions-pack
-        path: "*.vsix"
+    - name: Create GitHub Release and Upload .vsix
+      run: |
+        # Set GitHub token to authenticate with GitHub API
+        GITHUB_TOKEN=${{ secrets.GPAT }}
+        
+        # Get the current version from package.json (or wherever your version is defined)
+        VERSION=$(node -p "require('./package.json').version")
+        
+        # Create a GitHub release using the GitHub API
+        curl -X POST \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -d '{"tag_name": "v'"$VERSION"'","name": "Release v'"$VERSION"'","body": "Description of the release","draft": false, "prerelease": false}' \
+          https://api.github.com/repos/${{ github.repository }}/releases
+
+        # Upload the .vsix file as a release asset
+        curl -X POST \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Content-Type: application/zip" \
+          --data-binary @"*.vsix" \
+          https://uploads.github.com/repos/${{ github.repository }}/releases/$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases/tags/v$VERSION | jq -r .id)/assets?name=$(basename *.vsix)
