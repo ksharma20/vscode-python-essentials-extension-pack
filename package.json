@@ -2,7 +2,6 @@
   "name": "python-official-extensions",
   "displayName": "Python Official Extensions Pack",
   "description": "All the official extensions you need for your python development.",
-  "publisher": "github.com/ksharma20",
   "version": "0.0.1",
   "author": {
     "name": "kabir",

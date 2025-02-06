@@ -1,0 +1,31 @@
+name: Package Extension Pack
+
+on:
+  push:
+    branches:
+      - main  # Trigger this action on push to the main branch. Adjust if you're using a different branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4.2.2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4.2.0
+      with:
+        node-version: '20'  # Adjust the node version if needed
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Package Extension
+      run: npx --package @vscode/vsce -- vsce package
+
+    - name: Upload .vsix File as Artifact
+      uses: actions/upload-artifact@v4.6.0
+      with:
+        name: python-official-extensions-pack
+        path: "*.vsix"
