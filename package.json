@@ -1,0 +1,34 @@
+{
+  "name": "python-official-extensions",
+  "displayName": "Python Official Extensions Pack",
+  "description": "All the official extensions you need for your python development.",
+  "publisher": "github.com/ksharma20",
+  "version": "0.0.1",
+  "author": {
+    "name": "kabir",
+    "url": "github.com/ksharma20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ksharma20/vscode-python-essentials-extension-pack"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "extensionPack": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.pylint",
+    "ms-python.debugpy",
+    "ms-python.isort",
+    "njpwerner.autodocstring",
+    "ms-python.black-formatter",
+    "ms-python.vscode-python-envs",
+    "streetsidesoftware.code-spell-checker",
+    "visualstudioexptteam.vscodeintellicode",
+    "visualstudioexptteam.vscodeintellicode-completions"
+  ]
+}
