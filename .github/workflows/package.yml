@@ -28,7 +28,7 @@ jobs:
       run: vsce package
 
     - name: Upload .vsix File as Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4.6.0
       with:
         name: python-official-extensions-pack
         path: "*.vsix"
