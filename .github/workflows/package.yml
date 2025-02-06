@@ -42,5 +42,5 @@ jobs:
         curl -X POST \
           -H "Authorization: token $GITHUB_TOKEN" \
           -H "Content-Type: application/zip" \
-          --data-binary @"*.vsix" \
-          https://uploads.github.com/repos/${{ github.repository }}/releases/$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases/tags/v$VERSION | jq -r .id)/assets?name=$(basename *.vsix)
+          --data-binary @"python-official-extensions-0.0.1.vsix" \
+          https://uploads.github.com/repos/${{ github.repository }}/releases/$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases/tags/v$VERSION | jq -r .id)/assets?name=python-official-extensions-0.0.1.vsix
